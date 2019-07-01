@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+    <string name="nine">9</string>
+    <string name="eight">8</string>
+    <string name="seven">7</string>
+    <string name="six">6</string>
+    <string name="five">5</string>
+    <string name="four">4</string>
+    <string name="three">3</string>
+    <string name="two">2</string>
+    <string name="one">1</string>
+    <string name="zero">0</string>
+    <string name="dot">.</string>
+    <string name="ac">AC</string>
+    <string name="go">GO</string>
+    <string name="bmi">BMI</string>
+    <string name="info">Information</string>
+    <string name="underweight">Underweight</string>
+    <string name="normal">Normal</string>
+    <string name="overweight">Over weight</string>
+    <string name="kilogram">Kilogram</string>
+    <string name="meter">Meter</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+
+    <string-array name="height_units">
+        <item>Centimeter</item>
+        <item>Meter</item>
+        <item>Feet</item>
+        <item>Inch</item>
+    </string-array>
+
+    <string-array name="weight_units">
+        <item>Kilogram</item>
+        <item>Pound</item>
+    </string-array>
+</resources>

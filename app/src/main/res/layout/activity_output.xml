@@ -1,0 +1,177 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_margin="50dp"
+    android:background="@drawable/border"
+    android:paddingLeft="36dp"
+    android:paddingTop="36dp"
+    android:paddingRight="40dp"
+    android:paddingBottom="28dp">
+
+    <TextView
+        android:id="@+id/bmi_calculated_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="5dp"
+        android:text="20.8"
+        android:textColor="@color/orange"
+        android:textSize="70sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/BMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="15dp"
+        android:text="@string/bmi"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bmi_calculated_value"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bmi_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/normal"
+        android:textColor="@color/green"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/BMI"
+        app:layout_constraintStart_toStartOf="@+id/BMI"
+        app:layout_constraintTop_toBottomOf="@+id/BMI" />
+
+    <View
+        android:id="@+id/seperator"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:background="@color/darkGrey"
+        android:elevation="7dp"
+        app:layout_constraintCircleRadius="1dp"
+        app:layout_constraintEnd_toEndOf="@+id/BMI"
+        app:layout_constraintStart_toStartOf="@+id/bmi_calculated_value"
+        app:layout_constraintTop_toBottomOf="@+id/bmi_calculated_value" />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/info"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seperator" />
+
+    <View
+        android:id="@+id/blue_line"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toStartOf="@id/info"
+        app:layout_constraintStart_toStartOf="@+id/bmi_calculated_value"
+        app:layout_constraintTop_toBottomOf="@id/normal" />
+
+    <TextView
+        android:id="@+id/underWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/underweight"
+        android:textColor="@color/blue"
+        android:textSize="12sp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/blue_line"
+        app:layout_constraintEnd_toStartOf="@+id/green_line"
+        app:layout_constraintStart_toStartOf="@id/blue_line" />
+
+    <View
+        android:id="@+id/green_line"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/green"
+        app:layout_constraintEnd_toEndOf="@id/info"
+        app:layout_constraintStart_toStartOf="@id/info"
+        app:layout_constraintTop_toBottomOf="@id/normal" />
+
+    <TextView
+        android:id="@+id/normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:padding="10dp"
+        android:text="@string/normal"
+        android:textColor="@color/green"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/orange_line"
+        app:layout_constraintStart_toEndOf="@id/blue_line"
+        app:layout_constraintTop_toBottomOf="@id/info" />
+
+    <View
+        android:id="@+id/orange_line"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="@id/BMI"
+        app:layout_constraintStart_toEndOf="@id/info"
+        app:layout_constraintTop_toBottomOf="@id/normal" />
+
+    <TextView
+        android:id="@+id/overWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overweight"
+        android:textColor="@color/orange"
+        android:padding="10dp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/orange_line"
+        app:layout_constraintEnd_toEndOf="@id/orange_line"
+        app:layout_constraintStart_toStartOf="@+id/orange_line" />
+
+    <TextView
+        android:id="@+id/underWeight_min_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="16.0"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/blue_line"
+        app:layout_constraintTop_toBottomOf="@+id/underWeight" />
+
+    <TextView
+        android:id="@+id/unerweight_max_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="18.5"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/orange_line"
+        app:layout_constraintStart_toStartOf="@+id/blue_line"
+        app:layout_constraintTop_toBottomOf="@+id/underWeight" />
+
+    <TextView
+        android:id="@+id/overweight_min_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="25.0"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/orange_line"
+        app:layout_constraintStart_toStartOf="@+id/green_line"
+        app:layout_constraintTop_toBottomOf="@+id/overWeight" />
+
+    <TextView
+        android:id="@+id/overweight_max_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="40.0"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/orange_line"
+        app:layout_constraintTop_toBottomOf="@+id/overWeight" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

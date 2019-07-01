@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2.5dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/weightLayout"
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingLeft="22dp"
+                android:text="@string/weight"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:textStyle="normal" />
+
+            <Spinner
+                android:id="@+id/weight_spinner"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="22dp"
+                android:spinnerMode="dialog" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:onClick="onClick"
+            android:id="@+id/weightValues"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/weight_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.12"
+                android:autoSizeTextType="uniform"
+                android:background="@color/white"
+                android:gravity="right|bottom"
+                android:paddingRight="20dp"
+                android:text="60"
+                android:textColor="@color/orange"
+                android:textSize="36dp" />
+
+            <TextView
+                android:id="@+id/weight_unit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.12"
+                android:autoSizeTextType="uniform"
+                android:background="@color/white"
+                android:gravity="top|end"
+                android:paddingRight="20dp"
+                android:text="@string/kilogram"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="2dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/heightLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:onClick="onClick"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingLeft="22dp"
+                android:text="@string/height"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:textStyle="normal" />
+
+            <Spinner
+                android:id="@+id/height_spinner"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="22dp"
+                android:spinnerMode="dialog"></Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:onClick="onClick"
+            android:id="@+id/heightValues"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/height_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.12"
+                android:autoSizeTextType="uniform"
+                android:background="@color/white"
+                android:gravity="right|bottom"
+                android:paddingRight="20dp"
+                android:text="170"
+                android:textColor="@color/black"
+                android:textSize="36dp" />
+
+            <TextView
+                android:id="@+id/height_unit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.12"
+                android:autoSizeTextType="uniform"
+                android:background="@color/white"
+                android:gravity="top|end"
+                android:paddingRight="20dp"
+                android:text="@string/meter"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
