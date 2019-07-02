@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,16 +11,18 @@
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2.5dp"
         android:layout_weight="0.5"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="DisableBaselineAlignment">
 
         <LinearLayout
             android:id="@+id/weightLayout"
-            android:onClick="onClick"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
             android:background="@color/white"
-            android:orientation="horizontal">
+            android:onClick="onClick"
+            android:orientation="horizontal"
+            tools:ignore="NestedWeights">
 
             <TextView
                 android:id="@+id/weight"
@@ -27,11 +30,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@color/white"
-                android:paddingLeft="22dp"
+                android:paddingStart="22dp"
+                android:paddingEnd="0dp"
                 android:text="@string/weight"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="22dp"
+                android:textSize="22sp"
                 android:textStyle="normal" />
 
             <Spinner
@@ -39,17 +43,17 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:paddingRight="22dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="22dp"
                 android:spinnerMode="dialog" />
         </LinearLayout>
 
         <LinearLayout
-            android:onClick="onClick"
             android:id="@+id/weightValues"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
+            android:onClick="onClick"
             android:orientation="vertical">
 
             <TextView
@@ -59,11 +63,13 @@
                 android:layout_weight="0.12"
                 android:autoSizeTextType="uniform"
                 android:background="@color/white"
-                android:gravity="right|bottom"
-                android:paddingRight="20dp"
-                android:text="60"
+                android:gravity="end|bottom"
+                android:paddingStart="0dp"
+                android:paddingEnd="20dp"
+                android:text="@string/sixty_numeral"
                 android:textColor="@color/orange"
-                android:textSize="36dp" />
+                android:textSize="36sp"
+                tools:ignore="UnusedAttribute" />
 
             <TextView
                 android:id="@+id/weight_unit"
@@ -73,9 +79,11 @@
                 android:autoSizeTextType="uniform"
                 android:background="@color/white"
                 android:gravity="top|end"
-                android:paddingRight="20dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="20dp"
                 android:text="@string/kilogram"
-                android:textSize="16dp" />
+                android:textSize="16sp"
+                tools:ignore="UnusedAttribute" />
 
         </LinearLayout>
     </LinearLayout>
@@ -85,6 +93,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="2dp"
         android:layout_weight="0.5"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -92,9 +101,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
-            android:onClick="onClick"
             android:background="@color/white"
-            android:orientation="horizontal">
+            android:onClick="onClick"
+            android:orientation="horizontal"
+            tools:ignore="NestedWeights">
 
             <TextView
                 android:id="@+id/height"
@@ -102,11 +112,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:background="@color/white"
-                android:paddingLeft="22dp"
+                android:paddingStart="22dp"
+                android:paddingEnd="0dp"
                 android:text="@string/height"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="22dp"
+                android:textSize="22sp"
                 android:textStyle="normal" />
 
             <Spinner
@@ -114,17 +125,17 @@
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:paddingRight="22dp"
-                android:spinnerMode="dialog"></Spinner>
+                android:paddingStart="20dp"
+                android:paddingEnd="22dp"
+                android:spinnerMode="dialog" />
         </LinearLayout>
 
         <LinearLayout
-            android:onClick="onClick"
             android:id="@+id/heightValues"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
+            android:onClick="onClick"
             android:orientation="vertical">
 
             <TextView
@@ -134,11 +145,13 @@
                 android:layout_weight="0.12"
                 android:autoSizeTextType="uniform"
                 android:background="@color/white"
-                android:gravity="right|bottom"
-                android:paddingRight="20dp"
-                android:text="170"
+                android:gravity="end|bottom"
+                android:paddingStart="0dp"
+                android:paddingEnd="20dp"
+                android:text="@string/one_seventy_numeral"
                 android:textColor="@color/black"
-                android:textSize="36dp" />
+                android:textSize="36sp"
+                tools:ignore="UnusedAttribute" />
 
             <TextView
                 android:id="@+id/height_unit"
@@ -148,9 +161,11 @@
                 android:autoSizeTextType="uniform"
                 android:background="@color/white"
                 android:gravity="top|end"
-                android:paddingRight="20dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="20dp"
                 android:text="@string/meter"
-                android:textSize="16dp" />
+                android:textSize="16sp"
+                tools:ignore="UnusedAttribute" />
 
         </LinearLayout>
     </LinearLayout>

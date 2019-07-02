@@ -4,13 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,29 +14,8 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TOAST_MESSAGE = "Invalid BMI! Please Check your Input";
-    private static final String UNDERWEIGHT = "Underweight";
-    private static final String NORMAL = "Normal";
-    private static final String OVERWEIGHT = "Over Weight";
-    private static final String DOT = ".";
-    private static final String KILOGRAM = "Kilogram";
-    private static final String POUND = "Pound";
-    private static final String CENTIMETER = "Centimeter";
-    private static final String METER = "Meter";
-    private static final String FEET = "Feet";
-    private static final String INCH = "Inch";
-    private static final String HEIGHT_VALUE = "height_Value";
-    private static final String HEIGHT_UNIT = "height_Unit";
-    private static final String WEIGHT_VALUE = "weight_Value";
-    private static final String WEIGHT_UNIT = "weight_Unit";
-    private static final String HEIGHT_COLOR = "height_color";
-    private static final String WEIGHT_COLOR = "weight_color";
-    private static final String RESULT_VISIBILITY = "result_visibility";
-    private static final String RESULT_VALUE = "result_value";
-    private static final String RESULT_TYPE = "result_type";
-    private static final String RESULT_TYPE_COLOR = "result_type_color";
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private boolean heightBoolean = false;
     private boolean weightBoolean = true;
@@ -55,116 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView heightUnit;
     private TextView weightUnit;
 
-    void weightSpinner(Spinner spinner) {
-        ArrayAdapter<String> weight_adapter = new ArrayAdapter<>(MainActivity.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.weight_units));
-        weight_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(weight_adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected = parent.getItemAtPosition(position).toString();
-                weightUnit = findViewById(R.id.weight_unit);
-                weightUnit.setText(selected);
-                heightValue.setTextColor(getResources().getColor(R.color.black));
-                weightValue.setTextColor(getResources().getColor(R.color.orange));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
-    }
-
-    void heightSpinner(Spinner spinner) {
-
-        ArrayAdapter<String> height_adapter = new ArrayAdapter<>(MainActivity.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.height_units));
-        height_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(height_adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected = parent.getItemAtPosition(position).toString();
-                heightUnit = findViewById(R.id.height_unit);
-                heightUnit.setText(selected);
-                heightValue.setTextColor(getResources().getColor(R.color.orange));
-                weightValue.setTextColor(getResources().getColor(R.color.black));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-            }
-        });
-    }
-
-    double WeightConverter(String weight, String value) {
-        double weightValue = Double.parseDouble(value);
-        switch (weight) {
-            case KILOGRAM:
-                return weightValue;
-            case POUND:
-                return (weightValue * 0.453592);
-            default:
-                return -1;
-        }
-    }
-
-    double HeightConverter(String height, String value) {
-        double heightValue = Double.parseDouble(value);
-        switch (height) {
-            case CENTIMETER:
-                return (heightValue * 0.01);
-            case METER:
-                return heightValue;
-            case FEET:
-                return (heightValue * 0.3048);
-            case INCH:
-                return (heightValue * 0.0254);
-            default:
-                return -1;
-        }
-    }
-
-    int CalculateBmi() {
-        double weight = WeightConverter(weightUnit.getText().toString(), weightValue.getText().toString());
-        double height = HeightConverter(heightUnit.getText().toString(), heightValue.getText().toString());
-        if (weight == 0 && height == 0 || height == 0 || weight == 0) {
-            Toast.makeText(getApplicationContext(), TOAST_MESSAGE, Toast.LENGTH_SHORT).show();
-            return -1;
-        } else {
-            double bmi = weight / (height * height);
-            DecimalFormat decimalFormat = new DecimalFormat("#.#");
-            bmiValue.setText(decimalFormat.format(bmi));
-            String type = getType(decimalFormat.format(bmi));
-            double parseDouble = Double.parseDouble(decimalFormat.format(bmi));
-            if (parseDouble > 40.0 || parseDouble < 16.0) {
-                Toast.makeText(getApplicationContext(), TOAST_MESSAGE, Toast.LENGTH_SHORT).show();
-                return -1;
-            }
-            bmiResult.setText(type);
-            if (type.equals(UNDERWEIGHT)) {
-                bmiResult.setTextColor(getResources().getColor(R.color.blue));
-            } else if (type.equals(NORMAL)) {
-                bmiResult.setTextColor(getResources().getColor(R.color.green));
-            } else
-                bmiResult.setTextColor(getResources().getColor(R.color.orange));
-        }
-        return 1;
-    }
-
-    private String getType(String format) {
-        double value = Double.parseDouble(format);
-        if (value >= 16.0 && value < 18.5 || value < 16.0)
-            return UNDERWEIGHT;
-        else if (value >= 18.5 && value < 25.0)
-            return NORMAL;
-        else
-            return OVERWEIGHT;
-    }
+    private String TOAST_MESSAGE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,56 +43,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         heightValue = findViewById(R.id.height_value);
         weightSpinner = findViewById(R.id.weight_spinner);
         heightSpinner = findViewById(R.id.height_spinner);
-       heightUnit = findViewById(R.id.height_unit);
+        heightUnit = findViewById(R.id.height_unit);
         weightUnit = findViewById(R.id.weight_unit);
         bmiValue = findViewById(R.id.bmi_calculated_value);
         bmiResult = findViewById(R.id.bmi_type);
-        weightSpinner(weightSpinner);
         heightSpinner(heightSpinner);
+        weightSpinner(weightSpinner);
 
-        if (savedInstanceState != null) {
-            heightValue.setText(savedInstanceState.getString(HEIGHT_VALUE));
-            heightUnit.setText(savedInstanceState.getString(HEIGHT_UNIT));
-            weightValue.setText(savedInstanceState.getString(WEIGHT_VALUE));
-            weightUnit.setText(savedInstanceState.getString(WEIGHT_UNIT));
-            heightValue.setTextColor(savedInstanceState.getInt(HEIGHT_COLOR));
-            weightValue.setTextColor(savedInstanceState.getInt(WEIGHT_COLOR));
-            if (savedInstanceState.getBoolean(RESULT_VISIBILITY)) {
-                result.setVisibility(View.VISIBLE);
-                keypad.setVisibility(View.INVISIBLE);
-                bmiValue.setText(savedInstanceState.getString(RESULT_VALUE));
-                bmiResult.setText(savedInstanceState.getString(RESULT_TYPE));
-                bmiResult.setTextColor(savedInstanceState.getInt(RESULT_TYPE_COLOR));
-            } else {
-                keypad.setVisibility(View.VISIBLE);
-                result.setVisibility(View.INVISIBLE);
-            }
-        }
+        TOAST_MESSAGE = getString(R.string.invalid_bmi_message);
 
+        fetchAndUpdateFromSavedState(savedInstanceState);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(HEIGHT_VALUE, heightValue.getText().toString());
-        outState.putString(HEIGHT_UNIT, heightUnit.getText().toString());
-        outState.putString(WEIGHT_VALUE, weightValue.getText().toString());
-        outState.putString(WEIGHT_UNIT, weightUnit.getText().toString());
-        outState.putInt(HEIGHT_COLOR, heightValue.getCurrentTextColor());
-        outState.putInt(WEIGHT_COLOR, weightValue.getCurrentTextColor());
-        outState.putBoolean(RESULT_VISIBILITY, false);
+        outState.putString(Constants.HEIGHT_VALUE, heightValue.getText().toString());
+        outState.putString(Constants.HEIGHT_UNIT, heightUnit.getText().toString());
+        outState.putString(Constants.WEIGHT_VALUE, weightValue.getText().toString());
+        outState.putString(Constants.WEIGHT_UNIT, weightUnit.getText().toString());
+        outState.putInt(Constants.HEIGHT_COLOR, heightValue.getCurrentTextColor());
+        outState.putInt(Constants.WEIGHT_COLOR, weightValue.getCurrentTextColor());
+        outState.putBoolean(Constants.RESULT_VISIBILITY, false);
         if (result.getVisibility() == View.VISIBLE) {
-            outState.putBoolean(RESULT_VISIBILITY, true);
-            outState.putString(RESULT_VALUE, bmiValue.getText().toString());
-            outState.putString(RESULT_TYPE, bmiResult.getText().toString());
-            outState.putInt(RESULT_TYPE_COLOR, bmiResult.getCurrentTextColor());
+            outState.putBoolean(Constants.RESULT_VISIBILITY, true);
+            outState.putString(Constants.RESULT_VALUE, bmiValue.getText().toString());
+            outState.putString(Constants.RESULT_TYPE, bmiResult.getText().toString());
+            outState.putInt(Constants.RESULT_TYPE_COLOR, bmiResult.getCurrentTextColor());
         }
     }
 
     @Override
     public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
+        switch (view.getId()) {
             case R.id.button_five:
             case R.id.button_six:
             case R.id.button_seven:
@@ -249,8 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
             case R.id.button_go: {
-                int calculatedBmi = CalculateBmi();
-                if (calculatedBmi == 1) {
+                int bmi = CalculateBmi();
+                if (bmi == 1) {
                     keypad.setVisibility(View.INVISIBLE);
                     result.setVisibility(View.VISIBLE);
                 }
@@ -293,9 +142,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             case R.id.button_clear_all: {
                 if (weightValue.getCurrentTextColor() == getResources().getColor(R.color.orange)) {
-                    weightValue.setText("0");
+                    weightValue.setText(getString(R.string.zero));
                 } else if (heightValue.getCurrentTextColor() == getResources().getColor(R.color.orange)) {
-                    heightValue.setText("0");
+                    heightValue.setText(getString(R.string.zero));
                 }
                 break;
             }
@@ -307,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if (weightInputValue.length() != 0)
                             weightValue.setText(weightInputValue);
                         else
-                            weightValue.setText("0");
+                            weightValue.setText(getString(R.string.zero));
                     }
                 } else if (heightValue.getCurrentTextColor() == getResources().getColor(R.color.orange)) {
                     String heightInputValue = heightValue.getText().toString();
@@ -316,10 +165,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if (heightInputValue.length() != 0)
                             heightValue.setText(heightInputValue);
                         else
-                            heightValue.setText("0");
+                            heightValue.setText(getString(R.string.zero));
                     }
                 }
                 break;
+            }
+        }
+    }
+
+    private int CalculateBmi() {
+        double weight = WeightConverter(weightUnit.getText().toString(), weightValue.getText().toString());
+        double height = HeightConverter(heightUnit.getText().toString(), heightValue.getText().toString());
+        if (weight == 0 && height == 0 || height == 0 || weight == 0) {
+            Toast.makeText(this, TOAST_MESSAGE, Toast.LENGTH_SHORT).show();
+            return -1;
+        } else {
+            double bmi = weight / (height * height);
+            DecimalFormat decimalFormat = new DecimalFormat("#.#");
+            bmiValue.setText(decimalFormat.format(bmi));
+            String type = getType(decimalFormat.format(bmi));
+            double parseDouble = Double.parseDouble(decimalFormat.format(bmi));
+            if (parseDouble > 40.0 || parseDouble < 16.0) {
+                Toast.makeText(this, TOAST_MESSAGE, Toast.LENGTH_SHORT).show();
+                return -1;
+            }
+            bmiResult.setText(type);
+            if (type.equals(Constants.UNDERWEIGHT)) {
+                bmiResult.setTextColor(getResources().getColor(R.color.blue));
+            } else if (type.equals(Constants.NORMAL)) {
+                bmiResult.setTextColor(getResources().getColor(R.color.green));
+            } else
+                bmiResult.setTextColor(getResources().getColor(R.color.orange));
+        }
+        return 1;
+    }
+
+    private String getType(String format) {
+        double value = Double.parseDouble(format);
+        if (value >= 16.0 && value < 18.5 || value < 16.0)
+            return Constants.UNDERWEIGHT;
+        else if (value >= 18.5 && value < 25.0)
+            return Constants.NORMAL;
+        else
+            return Constants.OVERWEIGHT;
+    }
+
+    private void fetchAndUpdateFromSavedState(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            heightValue.setText(savedInstanceState.getString(Constants.HEIGHT_VALUE));
+            heightUnit.setText(savedInstanceState.getString(Constants.HEIGHT_UNIT));
+            weightValue.setText(savedInstanceState.getString(Constants.WEIGHT_VALUE));
+            weightUnit.setText(savedInstanceState.getString(Constants.WEIGHT_UNIT));
+            heightValue.setTextColor(savedInstanceState.getInt(Constants.HEIGHT_COLOR));
+            weightValue.setTextColor(savedInstanceState.getInt(Constants.WEIGHT_COLOR));
+            if (savedInstanceState.getBoolean(Constants.RESULT_VISIBILITY)) {
+                result.setVisibility(View.VISIBLE);
+                keypad.setVisibility(View.INVISIBLE);
+                bmiValue.setText(savedInstanceState.getString(Constants.RESULT_VALUE));
+                bmiResult.setText(savedInstanceState.getString(Constants.RESULT_TYPE));
+                bmiResult.setTextColor(savedInstanceState.getInt(Constants.RESULT_TYPE_COLOR));
+            } else {
+                keypad.setVisibility(View.VISIBLE);
+                result.setVisibility(View.INVISIBLE);
             }
         }
     }
@@ -341,18 +248,92 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             if (s.equals(".") && (str.equals("") || str.equals("0")))
                 textView.setText("0.");
-            else if (str.length() < 3 || s.equals(DOT)) {
+            else if (str.length() < 3 || s.equals(Constants.DOT)) {
                 textView.append(s);
             }
         } else {
             if (str.equals("0")) {
                 textView.setText("0.");
             }
-            if (str.length() <= 6 && !s.equals(DOT)) {
-                int ind = textView.getText().toString().indexOf(DOT);
+            if (str.length() <= 6 && !s.equals(Constants.DOT)) {
+                int ind = textView.getText().toString().indexOf(Constants.DOT);
                 if (textView.getText().toString().length() <= (ind + 2))
                     textView.append(s);
             }
+        }
+    }
+
+    private void weightSpinner(Spinner spinner) {
+        ArrayAdapter<String> weight_adapter = new ArrayAdapter<>(MainActivity.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.weight_units));
+        weight_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(weight_adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = parent.getItemAtPosition(position).toString();
+                weightUnit = findViewById(R.id.weight_unit);
+                weightUnit.setText(selected);
+                heightValue.setTextColor(getResources().getColor(R.color.black));
+                weightValue.setTextColor(getResources().getColor(R.color.orange));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+    }
+
+    private void heightSpinner(Spinner spinner) {
+
+        ArrayAdapter<String> height_adapter = new ArrayAdapter<>(MainActivity.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.height_units));
+        height_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner.setAdapter(height_adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = parent.getItemAtPosition(position).toString();
+                heightUnit = findViewById(R.id.height_unit);
+                heightUnit.setText(selected);
+                heightValue.setTextColor(getResources().getColor(R.color.orange));
+                weightValue.setTextColor(getResources().getColor(R.color.black));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
+        });
+    }
+
+    private double WeightConverter(String weight, String value) {
+        double weightValue = Double.parseDouble(value);
+        switch (weight) {
+            case Constants.KILOGRAM:
+                return weightValue;
+            case Constants.POUND:
+                return (weightValue * 0.453592);
+            default:
+                return -1;
+        }
+    }
+
+    private double HeightConverter(String height, String value) {
+        double heightValue = Double.parseDouble(value);
+        switch (height) {
+            case Constants.CENTIMETER:
+                return (heightValue * 0.01);
+            case Constants.METER:
+                return heightValue;
+            case Constants.FEET:
+                return (heightValue * 0.3048);
+            case Constants.INCH:
+                return (heightValue * 0.0254);
+            default:
+                return -1;
         }
     }
 }

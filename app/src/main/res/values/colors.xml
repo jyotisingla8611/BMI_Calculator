@@ -11,4 +11,6 @@
     <color name="darkGrey">#404040</color>
     <color name="green">#53b667</color>
     <color name="blue">#4091e2</color>
+
+    <color name="backgroundColorSelector">#d3d4d8</color>
 </resources>

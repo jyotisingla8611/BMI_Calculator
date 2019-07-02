@@ -1,15 +1,5 @@
 <resources>
     <string name="app_name">BMI Calculator</string>
-    <string name="nine">9</string>
-    <string name="eight">8</string>
-    <string name="seven">7</string>
-    <string name="six">6</string>
-    <string name="five">5</string>
-    <string name="four">4</string>
-    <string name="three">3</string>
-    <string name="two">2</string>
-    <string name="one">1</string>
-    <string name="zero">0</string>
     <string name="dot">.</string>
     <string name="ac">AC</string>
     <string name="go">GO</string>
@@ -22,6 +12,25 @@
     <string name="meter">Meter</string>
     <string name="weight">Weight</string>
     <string name="height">Height</string>
+    <string name="invalid_bmi_message">Invalid BMI! Please Check your Input</string>
+
+    <string name="forty_point_zero_numerical">40.0</string>
+    <string name="twenty_five_point_zero_numerical">25.0</string>
+    <string name="eighteen_point_five_numerical">18.5</string>
+    <string name="sixteen_point_zero_numerical">16.0</string>
+    <string name="nine">9</string>
+    <string name="eight">8</string>
+    <string name="seven">7</string>
+    <string name="six">6</string>
+    <string name="five">5</string>
+    <string name="four">4</string>
+    <string name="three">3</string>
+    <string name="two">2</string>
+    <string name="one">1</string>
+    <string name="zero">0</string>
+    <string name="sixty_numeral">60</string>
+    <string name="one_seventy_numeral">170</string>
+
 
     <string-array name="height_units">
         <item>Centimeter</item>
