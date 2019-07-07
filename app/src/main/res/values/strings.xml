@@ -12,7 +12,6 @@
     <string name="meter">Meter</string>
     <string name="weight">Weight</string>
     <string name="height">Height</string>
-    <string name="invalid_bmi_message">Invalid BMI! Please Check your Input</string>
 
     <string name="forty_point_zero_numerical">40.0</string>
     <string name="twenty_five_point_zero_numerical">25.0</string>
@@ -31,7 +30,6 @@
     <string name="sixty_numeral">60</string>
     <string name="one_seventy_numeral">170</string>
 
-
     <string-array name="height_units">
         <item>Centimeter</item>
         <item>Meter</item>
@@ -43,4 +41,5 @@
         <item>Kilogram</item>
         <item>Pound</item>
     </string-array>
+
 </resources>

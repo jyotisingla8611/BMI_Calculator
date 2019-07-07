@@ -1,7 +1,5 @@
 package com.example.bmicalculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +10,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DecimalFormat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private boolean heightBoolean = false;
     private boolean weightBoolean = true;
+
     private LinearLayout keypad;
     private ConstraintLayout result;
     private TextView weightValue;
@@ -29,8 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView bmiResult;
     private TextView heightUnit;
     private TextView weightUnit;
-
-    private String TOAST_MESSAGE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +46,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         weightUnit = findViewById(R.id.weight_unit);
         bmiValue = findViewById(R.id.bmi_calculated_value);
         bmiResult = findViewById(R.id.bmi_type);
-        heightSpinner(heightSpinner);
-        weightSpinner(weightSpinner);
 
-        TOAST_MESSAGE = getString(R.string.invalid_bmi_message);
+        initializeHeightSpinner(heightSpinner);
+        initializeWeightSpinner(weightSpinner);
 
-        fetchAndUpdateFromSavedState(savedInstanceState);
+
+        getSavedInstanceState(savedInstanceState);
     }
 
     @Override
@@ -76,16 +75,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.button_five:
-            case R.id.button_six:
-            case R.id.button_seven:
-            case R.id.button_eight:
-            case R.id.button_nine:
             case R.id.button_zero:
             case R.id.button_one:
             case R.id.button_two:
             case R.id.button_three:
             case R.id.button_four:
+            case R.id.button_five:
+            case R.id.button_six:
+            case R.id.button_seven:
+            case R.id.button_eight:
+            case R.id.button_nine:
             case R.id.button_dot: {
                 if (weightValue.getCurrentTextColor() == getResources().getColor(R.color.orange)) {
                     String weight = ((TextView) view).getText().toString();
@@ -98,8 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
             case R.id.button_go: {
-                int bmi = CalculateBmi();
-                if (bmi == 1) {
+                if (calculateBmiAndShow() == 1) {
                     keypad.setVisibility(View.INVISIBLE);
                     result.setVisibility(View.VISIBLE);
                 }
@@ -173,22 +171,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private int CalculateBmi() {
-        double weight = WeightConverter(weightUnit.getText().toString(), weightValue.getText().toString());
-        double height = HeightConverter(heightUnit.getText().toString(), heightValue.getText().toString());
-        if (weight == 0 && height == 0 || height == 0 || weight == 0) {
-            Toast.makeText(this, TOAST_MESSAGE, Toast.LENGTH_SHORT).show();
+    private int calculateBmiAndShow() {
+        double weight = getWeightInKilograms(weightUnit.getText().toString(), Double.parseDouble(weightValue.getText().toString()));
+        double height = getHeightInMetres(heightUnit.getText().toString(), Double.parseDouble(heightValue.getText().toString()));
+        if (height == 0 || weight == 0) {
+            Toast.makeText(this, Constants.TOAST_MESSAGE, Toast.LENGTH_SHORT).show();
             return -1;
         } else {
             double bmi = weight / (height * height);
             DecimalFormat decimalFormat = new DecimalFormat("#.#");
             bmiValue.setText(decimalFormat.format(bmi));
-            String type = getType(decimalFormat.format(bmi));
+
+            String type = getBmiType(Double.parseDouble(decimalFormat.format(bmi)));
             double parseDouble = Double.parseDouble(decimalFormat.format(bmi));
-            if (parseDouble > 40.0 || parseDouble < 16.0) {
-                Toast.makeText(this, TOAST_MESSAGE, Toast.LENGTH_SHORT).show();
+            if (parseDouble > Constants.FORTY_POINT_ZERO || parseDouble < Constants.SIXTEEN_POINT_ZERO) {
+                Toast.makeText(this, Constants.TOAST_MESSAGE, Toast.LENGTH_SHORT).show();
                 return -1;
             }
+
             bmiResult.setText(type);
             if (type.equals(Constants.UNDERWEIGHT)) {
                 bmiResult.setTextColor(getResources().getColor(R.color.blue));
@@ -200,17 +200,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return 1;
     }
 
-    private String getType(String format) {
-        double value = Double.parseDouble(format);
-        if (value >= 16.0 && value < 18.5 || value < 16.0)
+    private String getBmiType(Double value) {
+        if (value < Constants.SIXTEEN_POINT_ZERO || value < Constants.EIGHTEEN_POINT_FIVE)
             return Constants.UNDERWEIGHT;
-        else if (value >= 18.5 && value < 25.0)
+        else if (value >= Constants.EIGHTEEN_POINT_FIVE && value < Constants.TWENTY_FIVE_POINT_ZERO)
             return Constants.NORMAL;
         else
             return Constants.OVERWEIGHT;
     }
 
-    private void fetchAndUpdateFromSavedState(Bundle savedInstanceState) {
+    private void getSavedInstanceState(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             heightValue.setText(savedInstanceState.getString(Constants.HEIGHT_VALUE));
             heightUnit.setText(savedInstanceState.getString(Constants.HEIGHT_UNIT));
@@ -232,30 +231,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateValues(TextView textView, String s) {
-
         if (heightBoolean) {
-            textView.setText("0");
+            textView.setText(Constants.ZERO);
             heightBoolean = false;
         } else if (weightBoolean) {
-            textView.setText("0");
+            textView.setText(Constants.ZERO);
             weightBoolean = false;
         }
 
         String str = textView.getText().toString();
-        if (!str.contains(".")) {
-            if (str.equals("0")) {
+        if (!str.contains(Constants.DOT)) {
+            if (str.equals(Constants.ZERO)) {
                 textView.setText("");
             }
-            if (s.equals(".") && (str.equals("") || str.equals("0")))
+            if (s.equals(Constants.DOT) && (str.equals("") || str.equals(Constants.ZERO)))
                 textView.setText("0.");
-            else if (str.length() < 3 || s.equals(Constants.DOT)) {
+            else if (str.length() < Constants.STRING_LENGTH || s.equals(Constants.DOT)) {
                 textView.append(s);
             }
         } else {
-            if (str.equals("0")) {
+            if (str.equals(Constants.ZERO)) {
                 textView.setText("0.");
             }
-            if (str.length() <= 6 && !s.equals(Constants.DOT)) {
+            if (str.length() <= Constants.STRING_LENGTH_WITH_DOT && !s.equals(Constants.DOT)) {
                 int ind = textView.getText().toString().indexOf(Constants.DOT);
                 if (textView.getText().toString().length() <= (ind + 2))
                     textView.append(s);
@@ -263,10 +261,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void weightSpinner(Spinner spinner) {
+    private void initializeWeightSpinner(Spinner spinner) {
         ArrayAdapter<String> weight_adapter = new ArrayAdapter<>(MainActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.weight_units));
-        weight_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(weight_adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -285,14 +282,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void heightSpinner(Spinner spinner) {
+    private void initializeHeightSpinner(Spinner spinner) {
 
-        ArrayAdapter<String> height_adapter = new ArrayAdapter<>(MainActivity.this,
+        ArrayAdapter<String> heightAdapter = new ArrayAdapter<>(MainActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.height_units));
-        height_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(height_adapter);
-
+        spinner.setAdapter(heightAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -309,29 +303,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private double WeightConverter(String weight, String value) {
-        double weightValue = Double.parseDouble(value);
-        switch (weight) {
+    private double getWeightInKilograms(String unit, Double weightValue) {
+        switch (unit) {
             case Constants.KILOGRAM:
                 return weightValue;
             case Constants.POUND:
-                return (weightValue * 0.453592);
+                return (weightValue * Constants.CONVERSION_RATE_FEET_TO_POUND);
             default:
                 return -1;
         }
     }
 
-    private double HeightConverter(String height, String value) {
-        double heightValue = Double.parseDouble(value);
-        switch (height) {
+    private double getHeightInMetres(String unit, Double heightValue) {
+        switch (unit) {
             case Constants.CENTIMETER:
-                return (heightValue * 0.01);
+                return heightValue * Constants.CONVERSION_RATE_CENTIMETER_TO_METER;
             case Constants.METER:
                 return heightValue;
             case Constants.FEET:
-                return (heightValue * 0.3048);
+                return (heightValue * Constants.CONVERSION_RATE_FEET_TO_METER);
             case Constants.INCH:
-                return (heightValue * 0.0254);
+                return (heightValue * Constants.CONVERSION_RATE_INCH_TO_METER);
             default:
                 return -1;
         }

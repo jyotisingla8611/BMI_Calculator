@@ -20,7 +20,7 @@
 
             <include
                 android:id="@+id/input_layout"
-                layout="@layout/activity_input"
+                layout="@layout/layout_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </RelativeLayout>
@@ -32,14 +32,14 @@
 
             <include
                 android:id="@+id/keypad"
-                layout="@layout/activity_keypad"
+                layout="@layout/layout_keypad"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="visible" />
 
             <include
                 android:id="@+id/output_layout"
-                layout="@layout/activity_output"
+                layout="@layout/layout_result"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="invisible" />

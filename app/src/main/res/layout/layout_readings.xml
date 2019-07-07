@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weight"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"/>
+
+    <Spinner
+        android:id="@+id/weight_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@id/weight"
+        app:layout_constraintStart_toEndOf="@id/weight"
+        app:layout_constraintTop_toTopOf="@id/weight" />
+
+    <TextView
+        android:id="@+id/weight_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/zero"
+        android:textColor="@color/orange"
+        android:textAlignment="viewEnd"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="@id/weight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/weight_spinner"
+        app:layout_constraintTop_toTopOf="@id/weight" />
+
+    <TextView
+        android:id="@+id/weight_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/kilogram"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/weight_value"
+        app:layout_constraintTop_toBottomOf="@id/weight_value" />
+
+
+    <TextView
+        android:id="@+id/height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/height"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weight" />
+
+    <Spinner
+        android:id="@+id/height_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@id/height"
+        app:layout_constraintStart_toEndOf="@id/height"
+        app:layout_constraintTop_toTopOf="@id/height" />
+
+    <TextView
+        android:id="@+id/height_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/zero"
+        android:textColor="@color/black"
+        android:textAlignment="viewEnd"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="@id/height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/height_spinner"
+        app:layout_constraintTop_toTopOf="@id/height" />
+
+    <TextView
+        android:id="@+id/height_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/meter"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/height_value"
+        app:layout_constraintTop_toBottomOf="@id/height_value" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

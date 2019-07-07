@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:orientation="vertical"
+            tools:ignore="NestedWeights">
+
+            <TextView
+                android:id="@+id/button_seven"
+                style="@style/buttonStyle"
+                android:text="@string/seven" />
+
+            <TextView
+                android:id="@+id/button_four"
+                style="@style/buttonStyle"
+                android:text="@string/four" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/button_eight"
+                style="@style/buttonStyle"
+                android:text="@string/eight" />
+
+            <TextView
+                android:id="@+id/button_five"
+                style="@style/buttonStyle"
+                android:text="@string/five" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/button_nine"
+                style="@style/buttonStyle"
+                android:text="@string/nine" />
+
+            <TextView
+                android:id="@+id/button_six"
+                style="@style/buttonStyle"
+                android:text="@string/six" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                android:id="@+id/button_clear_all"
+                style="@style/buttonStyle"
+                android:text="@string/ac"
+                android:textColor="@color/orange" />
+
+            <ImageView
+                android:id="@+id/button_erase"
+                style="@style/buttonStyle"
+                android:onClick="onClick"
+                android:src="@mipmap/left_arrow"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        tools:ignore="DisableBaselineAlignment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            tools:ignore="NestedWeights">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal"
+                tools:ignore="InefficientWeight">
+
+                <TextView
+                    android:id="@+id/button_one"
+                    style="@style/buttonStyle"
+                    android:text="@string/one" />
+
+                <TextView
+                    android:id="@+id/button_two"
+                    style="@style/buttonStyle"
+                    android:text="@string/two" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/button_zero"
+                style="@style/buttonStyle"
+                android:text="@string/zero" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/button_three"
+                    style="@style/buttonStyle"
+                    android:text="@string/three" />
+
+                <TextView
+                    android:id="@+id/button_dot"
+                    style="@style/buttonStyle"
+                    android:text="@string/dot" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_go"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="1dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/selector_go_button"
+                android:onClick="onClick"
+                android:text="@string/go"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+
