@@ -1,5 +1,7 @@
 package com.example.bmicalculator;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import java.text.DecimalFormat;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -75,16 +75,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.button_zero:
-            case R.id.button_one:
-            case R.id.button_two:
-            case R.id.button_three:
-            case R.id.button_four:
             case R.id.button_five:
             case R.id.button_six:
             case R.id.button_seven:
             case R.id.button_eight:
             case R.id.button_nine:
+            case R.id.button_zero:
+            case R.id.button_one:
+            case R.id.button_two:
+            case R.id.button_three:
+            case R.id.button_four:
             case R.id.button_dot: {
                 if (weightValue.getCurrentTextColor() == getResources().getColor(R.color.orange)) {
                     String weight = ((TextView) view).getText().toString();
@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateValues(TextView textView, String s) {
         if (heightBoolean) {
-            textView.setText(Constants.ZERO);
+            textView.setText("0");
             heightBoolean = false;
         } else if (weightBoolean) {
             textView.setText(Constants.ZERO);
@@ -264,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initializeWeightSpinner(Spinner spinner) {
         ArrayAdapter<String> weight_adapter = new ArrayAdapter<>(MainActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.weight_units));
+        weight_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(weight_adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -286,6 +287,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ArrayAdapter<String> heightAdapter = new ArrayAdapter<>(MainActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.height_units));
+        heightAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(heightAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

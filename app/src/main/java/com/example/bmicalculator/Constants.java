@@ -22,7 +22,7 @@ abstract class Constants {
     static final String RESULT_VALUE = "result_value";
     static final String RESULT_TYPE = "result_type";
     static final String RESULT_TYPE_COLOR = "result_type_color";
-    static final String TOAST_MESSAGE = "Invalid BMI! Please Check your Input";
+    static final String TOAST_MESSAGE = "@string/invalid";
     static final double CONVERSION_RATE_CENTIMETER_TO_METER = 0.01;
     static final double CONVERSION_RATE_FEET_TO_METER = 0.3048;
     static final double CONVERSION_RATE_INCH_TO_METER = 0.0254;
